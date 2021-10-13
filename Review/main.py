@@ -58,6 +58,7 @@ def main():
             yellow.y -= VEL
         if keys_pressed[pygame.K_s]: #left
             yellow.y += VEL
+        # i am having the trouble
 
 
         draw_window(red, yellow)
