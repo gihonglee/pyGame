@@ -73,7 +73,7 @@ def main():
             if # this is to ensure that the key is not being press down for the bullet shooting
 
             
-        # wasd for the yellow / arrow key for the red
+        # wasd for the yellow / arrow key for the red  a
         
         keys_pressed = pygame.key.get_pressed()
         yellow_handle_movement(keys_pressed,yellow)
