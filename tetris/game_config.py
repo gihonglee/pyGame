@@ -3,9 +3,9 @@ grid_width = 35
 grid_height = 35
 grid_num_x = 10
 grid_num_y = 20
-FPS = 10
-WIDTH = grid_width * (grid_num_x + 2)
-HEIGHT = grid_height * (grid_num_y + 2)
+FPS = 5
+WIDTH = grid_width * (grid_num_x)
+HEIGHT = grid_height * (grid_num_y)
 
 
 # Color
