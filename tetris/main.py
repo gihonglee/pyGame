@@ -1,8 +1,10 @@
 import game_config as g
 import pygame
 import os
+import numpy as np
 
 # first make a screen with the given width and height
+# Let's make a movement that we drop the block to the bottom
 
 
 WIN = pygame.display.set_mode((g.WIDTH,g.HEIGHT))
@@ -19,30 +21,43 @@ def handle_movement(keys_pressed,dummy_r):
         dummy_r.x += g.grid_width
     if keys_pressed[pygame.K_UP] and dummy_r.y> 0: # Up
         dummy_r.y -= g.grid_width
-    if keys_pressed[pygame.K_a] and dummy_r.y + dummy_r.height  < g.HEIGHT: # Down
+    if keys_pressed[pygame.K_DOWN] and dummy_r.y + dummy_r.height  < g.HEIGHT: # Down
         dummy_r.y += g.grid_width
-    print(dummy_r.x)
-    print(dummy_r.y)
-def draw(dummy_r):
+    if keys_pressed[pygame.K_z]: # Drop
+        dummy_r.y = g.HEIGHT - dummy_r.height
+    
+def draw(dummy_list):
     WIN.fill(g.WHITE)
-    WIN.blit(block, (dummy_r.x, dummy_r.y))
+    for dummy in dummy_list:
+        WIN.blit(block, (dummy.x, dummy.y))
     pygame.display.update()
 
-def main():
+def status(x,y,type):
+    pass
 
-    dummy_r = pygame.Rect(0,300, g.grid_num_x,g.grid_num_y)
+
+def main():
+    clock = pygame.time.Clock()
+    dummy_list = []
+    dummy = pygame.Rect(0,0, g.grid_width,g.grid_height)
+    dummy_list.append(dummy)
+    # dummy_r = pygame.Rect(0,0, g.grid_width,g.grid_height)
+    # dummy_y = pygame.Rect(0,0, g.grid_width,g.grid_height)
+    i = 0
     run = True
     while run:
+        clock.tick(g.FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-        draw(dummy_r)
     
+        keys_pressed = pygame.key.get_pressed()
+        handle_movement(keys_pressed,dummy_list[i])
+        draw(dummy_list)
+        if keys_pressed[pygame.K_z]:
+            dummy_list.append(pygame.Rect(0,0, g.grid_width,g.grid_height))
+            i = i + 1
 
-    keys_pressed = pygame.key.get_pressed()
-    handle_movement(keys_pressed,dummy_r)
-    dummy_r.y = dummy_r.y + 300
-    draw(dummy_r)
     pygame.quit()
 
 if __name__ == "__main__":
