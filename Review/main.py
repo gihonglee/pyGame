@@ -157,8 +157,6 @@ def main():
         if winner_text != "":
             draw_winner(winner_text)
             break
-
-
             
         # wasd for the yellow / arrow key for the red  aa
     
