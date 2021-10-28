@@ -23,3 +23,6 @@ class Animal:
         self.box.fill((200, 200, 200))
 
         animals_count[self.name] += 1
+
+b = Animal(1)
+print(b.index)
